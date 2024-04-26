@@ -3,7 +3,11 @@ import { LoginDto } from "./dto/login.dto";
 import { RegisterDto } from "./dto/register.dto";
 import { AuthService } from "./auth.service";
 import { ApiTags } from '@nestjs/swagger';
-import { AuthGuard } from "./auth.guard";
+import { AuthGuard } from "./guard/auth.guard";
+
+interface RequestWithUser extends Request {
+    user: { email_usuario: string; rol: string };
+  }
 
 @Controller('auth')
 @ApiTags('Auth')
