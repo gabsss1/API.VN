@@ -21,11 +21,16 @@ export class AuthService {
     
         const hashedPassword = await bcryptjs.hash(contrasena_usuario, 10);
     
-        return await this.usersService.create({
+         await this.usersService.create({
           nombres_usuario,
           email_usuario,
           contrasena_usuario: hashedPassword,
         });
+
+        return {
+          nombres_usuario,
+          email_usuario
+        }
       }
 
       async login({ email_usuario, contrasena_usuario }: LoginDto) {
@@ -49,5 +54,9 @@ export class AuthService {
           token: token,
           email: user.email_usuario,
         };
+      }
+
+      async profile({ email_usuario, rol}: {email_usuario: string, rol: string}){
+        return await this.usersService.findOneByEmail(email_usuario);
       }
 }

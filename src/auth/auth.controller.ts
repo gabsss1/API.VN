@@ -4,6 +4,10 @@ import { RegisterDto } from "./dto/register.dto";
 import { AuthService } from "./auth.service";
 import { ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from "./guard/auth.guard";
+import { Rol } from "./decorators/rol.decorator";
+import { RolGuard } from "./guard/rol/rol.guard";
+import { Roles } from "./enums/rol.enum";
+import { Auth } from "./decorators/auth.decorator";
 
 interface RequestWithUser extends Request {
     user: { email_usuario: string; rol: string };
@@ -26,8 +30,8 @@ export class AuthController {
     }
 
     @Get('profile')
-    @UseGuards(AuthGuard)
-    profile(@Request() req) {
-        return req.user;
+    @Auth(Roles.ADMIN) 
+    profile(@Request() req: RequestWithUser) {
+        return this.authService.profile(req.user);
     }
 }
