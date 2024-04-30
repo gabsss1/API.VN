@@ -5,6 +5,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsuariosModule } from './usuarios/usuarios.module';
 import { AuthModule } from './auth/auth.module';
+import { ApoderadoModule } from './apoderado/apoderado.module';
+import { DniModule } from './dni/dni.module';
 
 @Module({
   imports: [
@@ -19,9 +21,11 @@ import { AuthModule } from './auth/auth.module';
       database: process.env.DATABASE_NAME,
       synchronize: true,
     }),
+    //Modules
     UsuariosModule,
     AuthModule,
-    //Modules
+    ApoderadoModule,
+    DniModule
   ],
   controllers: [AppController],
   providers: [AppService],
