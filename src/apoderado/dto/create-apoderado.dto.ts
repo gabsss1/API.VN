@@ -28,4 +28,8 @@ export class CreateApoderadoDto {
     @IsNumber() // Esto asegura que el dni_id sea un número
     @ApiProperty()
     dni_id: number;
+
+    @IsNumber()
+    @ApiProperty()
+    numero_dni: number
 }

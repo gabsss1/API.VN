@@ -33,7 +33,8 @@ export class ApoderadoService {
       email_apoderado: createApoderadoDto.email_apoderado,
       telefono_apoderado: createApoderadoDto.telefono_apoderado,
       direccion_apoderado: createApoderadoDto.direccion_apoderado,
-      dni
+      dni,
+      numero_dni: createApoderadoDto.numero_dni
     });
     return await this.apoderadoRepository.save(apoderado);
   }

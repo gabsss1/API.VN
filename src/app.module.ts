@@ -7,6 +7,7 @@ import { UsuariosModule } from './usuarios/usuarios.module';
 import { AuthModule } from './auth/auth.module';
 import { ApoderadoModule } from './apoderado/apoderado.module';
 import { DniModule } from './dni/dni.module';
+import { AlumnosModule } from './alumnos/alumnos.module';
 
 @Module({
   imports: [
@@ -25,7 +26,8 @@ import { DniModule } from './dni/dni.module';
     UsuariosModule,
     AuthModule,
     ApoderadoModule,
-    DniModule
+    DniModule,
+    AlumnosModule
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -22,6 +22,9 @@ export class Apoderado {
     @Column({ length: 500 })
     direccion_apoderado: string;
 
+    @Column()
+    numero_dni: number;
+
     @ManyToOne(() => Dni, { eager: true })
     dni: Dni;
 

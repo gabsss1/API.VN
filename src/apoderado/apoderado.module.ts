@@ -9,5 +9,6 @@ import { Dni } from 'src/dni/entities/dni.entity';
   imports: [TypeOrmModule.forFeature([Apoderado, Dni])],
   controllers: [ApoderadoController],
   providers: [ApoderadoService],
+  exports: [TypeOrmModule]
 })
 export class ApoderadoModule {}
