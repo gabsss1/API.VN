@@ -1,6 +1,7 @@
 // import { DocumentoIdentidad } from "src/documento_identidad/entities/documento_identidad.entity";
+import { Alumno } from "src/alumnos/entities/alumno.entity";
 import { Dni } from "src/dni/entities/dni.entity";
-import { Column, DeleteDateColumn, Entity, JoinColumn, ManyToOne } from "typeorm";
+import { Column, DeleteDateColumn, Entity, JoinColumn, ManyToOne, OneToMany } from "typeorm";
 
 @Entity()
 export class Apoderado {
@@ -27,6 +28,9 @@ export class Apoderado {
 
     @ManyToOne(() => Dni, { eager: true })
     dni: Dni;
+
+    @OneToMany(() => Alumno, alumno => alumno.apoderado, { eager: true} )
+    alumnos: Alumno[]
 
     @DeleteDateColumn()
     deletedAt: Date;

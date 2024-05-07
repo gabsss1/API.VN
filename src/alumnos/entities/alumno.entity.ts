@@ -27,7 +27,7 @@ export class Alumno {
     @ManyToOne( () => Dni, { eager: true})
     dni: Dni;
 
-    @ManyToOne( () => Apoderado, { eager: true})
+    @ManyToOne( () => Apoderado, apoderado => apoderado.alumnos )
     apoderado: Apoderado;
     
     @DeleteDateColumn()

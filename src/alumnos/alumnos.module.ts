@@ -10,5 +10,6 @@ import { Apoderado } from 'src/apoderado/entities/apoderado.entity';
   imports: [TypeOrmModule.forFeature([Alumno, Dni, Apoderado])],
   controllers: [AlumnosController],
   providers: [AlumnosService],
+  exports: [TypeOrmModule]
 })
 export class AlumnosModule {}
