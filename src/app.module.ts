@@ -22,6 +22,9 @@ import { DocentesModule } from './docentes/docentes.module';
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       database: process.env.DATABASE_NAME,
       synchronize: true,
+      ssl: {
+        rejectUnauthorized: false
+      }
     }),
     //Modules
     UsuariosModule,
