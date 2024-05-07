@@ -44,7 +44,8 @@ export class AlumnosService {
       numero_dni: createAlumnoDto.numero_dni,
       dni,
       apoderado
-    })
+    });
+    return await this.alumnoRepository.save(alumno);
   }
 
   async findAll() {
