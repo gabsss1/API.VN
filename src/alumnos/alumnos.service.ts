@@ -39,7 +39,7 @@ export class AlumnosService {
     const alumno = this.alumnoRepository.create({
       nombres_alumno: createAlumnoDto.nombres_alumno,
       apellidos_alumno: createAlumnoDto.apellidos_alumno,
-      direccion: createAlumnoDto.direccion,
+      direccion_alumno: createAlumnoDto.direccion_alumno,
       telefono_alumno: createAlumnoDto.telefono_alumno,
       numero_dni: createAlumnoDto.numero_dni,
       dni,
