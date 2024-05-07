@@ -16,7 +16,7 @@ export class Alumno {
     apellidos_alumno: string
 
     @Column({ length: 500})
-    direccion: string
+    direccion_alumno: string
 
     @Column({ length: 500})
     telefono_alumno: string

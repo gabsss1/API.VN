@@ -1,23 +1,28 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsEmail, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
-export class CreateAlumnoDto {
+export class CreateDocenteDto {
+    
+    @ApiProperty()
+    @IsString()
+    nombre_docente: string;
 
     @ApiProperty()
     @IsString()
-    nombres_alumno: string
+    apellido_docente: string;
 
     @ApiProperty()
     @IsString()
-    apellidos_alumno: string
+    direccion_docente: string;
 
     @ApiProperty()
     @IsString()
-    direccion_alumno: string
+    @IsEmail()
+    email_docente: string;
 
     @ApiProperty()
     @IsString()
-    telefono_alumno: string
+    telefono_docente: string;
 
     @ApiProperty()
     @IsNumber()
@@ -28,8 +33,4 @@ export class CreateAlumnoDto {
     @IsNotEmpty()
     dni_id: number;
 
-    @ApiProperty()
-    @IsNumber()
-    @IsNotEmpty()
-    apoderado_id: number;
 }

@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { ApoderadoModule } from './apoderado/apoderado.module';
 import { DniModule } from './dni/dni.module';
 import { AlumnosModule } from './alumnos/alumnos.module';
+import { DocentesModule } from './docentes/docentes.module';
 
 @Module({
   imports: [
@@ -27,7 +28,8 @@ import { AlumnosModule } from './alumnos/alumnos.module';
     AuthModule,
     ApoderadoModule,
     DniModule,
-    AlumnosModule
+    AlumnosModule,
+    DocentesModule
   ],
   controllers: [AppController],
   providers: [AppService],
