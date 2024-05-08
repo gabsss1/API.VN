@@ -31,7 +31,4 @@ export class Apoderado {
 
     @OneToMany(() => Alumno, alumno => alumno.apoderado, { eager: true} )
     alumnos: Alumno[]
-
-    @DeleteDateColumn()
-    deletedAt: Date;
 }

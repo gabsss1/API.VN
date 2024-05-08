@@ -89,6 +89,6 @@ export class AlumnosService {
   }
 
   async remove(alumno_id: number) {
-    return await this.apoderadoRepository.softDelete(alumno_id);
+    return await this.alumnoRepository.delete(alumno_id);
   }
 }

@@ -73,6 +73,6 @@ export class DocentesService {
   }
 
   async remove(docente_id: number) {
-    return await this.docenteRepository.softDelete(docente_id)
+    return await this.docenteRepository.delete(docente_id)
   }
 }

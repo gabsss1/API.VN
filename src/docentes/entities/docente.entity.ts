@@ -28,7 +28,4 @@ export class Docente {
 
     @ManyToOne( () => Dni, { eager:true })
     dni: Dni;
-
-    @DeleteDateColumn()
-    deletedAt: Date;
 }

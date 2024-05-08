@@ -29,7 +29,4 @@ export class Alumno {
 
     @ManyToOne( () => Apoderado, apoderado => apoderado.alumnos )
     apoderado: Apoderado;
-    
-    @DeleteDateColumn()
-    deletedAt: Date;
 }

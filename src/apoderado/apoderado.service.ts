@@ -72,6 +72,6 @@ export class ApoderadoService {
   }
 
   async remove(apoderado_id: number) {
-    return await this.apoderadoRepository.softDelete(apoderado_id);
+    return await this.apoderadoRepository.delete(apoderado_id);
   }
 }
