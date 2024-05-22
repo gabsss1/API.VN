@@ -32,4 +32,9 @@ export class CreateAlumnoDto {
     @IsNumber()
     @IsNotEmpty()
     apoderado_id: number;
+
+    @ApiProperty()
+    @IsNumber()
+    @IsNotEmpty()
+    aulas_id: number;
 }

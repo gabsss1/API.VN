@@ -9,6 +9,8 @@ import { ApoderadoModule } from './apoderado/apoderado.module';
 import { DniModule } from './dni/dni.module';
 import { AlumnosModule } from './alumnos/alumnos.module';
 import { DocentesModule } from './docentes/docentes.module';
+import { SeccionModule } from './seccion/seccion.module';
+import { AulasModule } from './aulas/aulas.module';
 
 @Module({
   imports: [
@@ -32,7 +34,9 @@ import { DocentesModule } from './docentes/docentes.module';
     ApoderadoModule,
     DniModule,
     AlumnosModule,
-    DocentesModule
+    DocentesModule,
+    SeccionModule,
+    AulasModule
   ],
   controllers: [AppController],
   providers: [AppService],
