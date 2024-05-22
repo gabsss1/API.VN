@@ -11,6 +11,8 @@ import { AlumnosModule } from './alumnos/alumnos.module';
 import { DocentesModule } from './docentes/docentes.module';
 import { SeccionModule } from './seccion/seccion.module';
 import { AulasModule } from './aulas/aulas.module';
+import { CursosModule } from './cursos/cursos.module';
+import { HorariosModule } from './horarios/horarios.module';
 
 @Module({
   imports: [
@@ -36,7 +38,9 @@ import { AulasModule } from './aulas/aulas.module';
     AlumnosModule,
     DocentesModule,
     SeccionModule,
-    AulasModule
+    AulasModule,
+    CursosModule,
+    HorariosModule
   ],
   controllers: [AppController],
   providers: [AppService],
