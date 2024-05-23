@@ -48,18 +48,52 @@ export class HorariosService {
   }
 
   async findAll() {
-    return `This action returns all horarios`;
+    return this.horarioRepository.find();
   }
 
-  async findOne(id: number) {
-    return `This action returns a #${id} horario`;
+  async findOne(horario_id: number) {
+    return await this.horarioRepository.findOneBy({horario_id});
   }
 
-  async update(id: number, updateHorarioDto: UpdateHorarioDto) {
-    return `This action updates a #${id} horario`;
+  async update(horario_id: number, updateHorarioDto: UpdateHorarioDto) {
+    const horario = await this.horarioRepository.findOneBy({horario_id})
+
+    if(!horario){
+      throw new BadRequestException('horario not found')
+    }
+
+    let docente;
+    if(updateHorarioDto.docente_id){
+      docente = await this.docenteRepository.findOneBy({
+        docente_id: updateHorarioDto.docente_id
+      });
+
+      if(!docente){
+        throw new BadRequestException('docente not found');
+      }
+    }
+
+    let curso;
+    if(updateHorarioDto.cursos_id){
+      curso = await this.cursoRepository.findOneBy({
+        cursos_id: updateHorarioDto.cursos_id
+      });
+
+      if(!docente){
+        throw new BadRequestException('cursos not found');
+      }
+    }
+
+    return await this.horarioRepository.save({
+      ...horario,
+      ...updateHorarioDto,
+      docente,
+      curso
+    })
+
   }
 
-  async remove(id: number) {
-    return `This action removes a #${id} horario`;
+  async remove(horario_id: number) {
+    return await this.horarioRepository.delete(horario_id);
   }
 }
