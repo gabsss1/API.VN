@@ -33,16 +33,28 @@ export class AlumnosService {
     });
 
     if(!dni){
-      throw new BadRequestException('Dni not found');
+      throw new BadRequestException('documento no encontrado');
     }
 
     const apoderado = await this.apoderadoRepository.findOneBy({
       apoderado_id: createAlumnoDto.apoderado_id
     })
 
+    if(!apoderado){
+      throw new BadRequestException('apoderado no encontrado');
+    }
+
     const aula = await this.aulaRepository.findOneBy({
       aulas_id: createAlumnoDto.aulas_id
     })
+
+    if(!aula){
+      throw new BadRequestException('aula no encontrada');
+    }
+
+    if(aula.alumno.length >= aula.capacidad){
+      throw new BadRequestException('Capacidad del aula llena.');
+    }
 
     const alumno = this.alumnoRepository.create({
       nombres_alumno: createAlumnoDto.nombres_alumno,
@@ -69,7 +81,7 @@ export class AlumnosService {
     const alumno = await this.alumnoRepository.findOneBy({alumno_id});
 
     if(!alumno){
-      throw new BadRequestException('Alumno not found');
+      throw new BadRequestException('alumno no encontrado');
     }
 
     let dni;
@@ -80,7 +92,7 @@ export class AlumnosService {
     }
 
     if(!dni){
-      throw new BadRequestException('Dni not found');
+      throw new BadRequestException('documento no encontrado');
     }
 
     let apoderado;
@@ -90,11 +102,23 @@ export class AlumnosService {
       })
     }
 
+    if(!apoderado){
+      throw new BadRequestException('apoderado no encontrado');
+    }
+
     let aula;
     if(updateAlumnoDto.aulas_id){
       aula = await this.aulaRepository.findOneBy({
         aulas_id: updateAlumnoDto.aulas_id
       })
+    }
+
+    if(!aula){
+      throw new BadRequestException('aula no encontrada');
+    }
+
+    if(aula.alumno.length >= aula.capacidad){
+      throw new BadRequestException('Capacidad del aula llena.');
     }
 
     return await this.alumnoRepository.save({
