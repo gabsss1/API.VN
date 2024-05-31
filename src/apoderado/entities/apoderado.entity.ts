@@ -26,9 +26,9 @@ export class Apoderado {
     @Column()
     numero_dni: number;
 
-    @ManyToOne(() => Dni, { eager: true })
+    @ManyToOne(() => Dni)
     dni: Dni;
 
-    @OneToMany(() => Alumno, alumno => alumno.apoderado, { eager: true} )
-    alumnos: Alumno[]
+    @OneToMany(() => Alumno, alumno => alumno.apoderado)
+    alumnos: Alumno;
 }

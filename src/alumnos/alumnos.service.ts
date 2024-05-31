@@ -70,11 +70,14 @@ export class AlumnosService {
   }
 
   async findAll() {
-    return this.alumnoRepository.find();
+    return this.alumnoRepository.find({ relations: ['dni', 'apoderado', 'aula'] });
   }
 
   async findOne(alumno_id: number) {
-    return await this.alumnoRepository.findOneBy({alumno_id});
+    return await this.alumnoRepository.findOne({ 
+      where: { alumno_id }, 
+      relations: ['dni', 'apoderado', 'aula'] 
+    });
   }
 
   async update(alumno_id: number, updateAlumnoDto: UpdateAlumnoDto) {

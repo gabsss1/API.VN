@@ -25,12 +25,12 @@ export class Alumno {
     @Column()
     numero_dni: number;
     
-    @ManyToOne( () => Dni, { eager: true})
+    @ManyToOne( () => Dni)
     dni: Dni;
 
     @ManyToOne( () => Apoderado, apoderado => apoderado.alumnos )
     apoderado: Apoderado;
 
     @ManyToOne( () => Aula, aula => aula.alumno)
-    aula: Aula
+    aula: Aula;
 }
