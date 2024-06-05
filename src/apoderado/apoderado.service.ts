@@ -40,11 +40,14 @@ export class ApoderadoService {
   }
 
   async findAll() {
-    return this.apoderadoRepository.find();
+    return this.apoderadoRepository.find({ relations: ['dni']});
   }
 
   async findOne(apoderado_id: number) {
-    return await this.apoderadoRepository.findOneBy({apoderado_id});
+    return await this.apoderadoRepository.findOne({ 
+      where: { apoderado_id }, 
+      relations: ['dni'] 
+    });
   }
 
   async update(apoderado_id: number, updateApoderadoDto: UpdateApoderadoDto) {

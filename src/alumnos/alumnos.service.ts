@@ -120,8 +120,13 @@ export class AlumnosService {
       throw new BadRequestException('aula no encontrada');
     }
 
-    if(aula.alumno.length >= aula.capacidad){
-      throw new BadRequestException('Capacidad del aula llena.');
+    const alumnoEnAula = aula.alumno.find(alumnoAula => alumnoAula.alumno_id === alumno.alumno_id);
+
+    // Si el alumno no está actualmente en el aula, verificar la capacidad del aula
+    if (!alumnoEnAula) {
+      if (aula.alumno.length >= aula.capacidad) {
+        throw new BadRequestException('Capacidad del aula llena.');
+      }
     }
 
     return await this.alumnoRepository.save({

@@ -26,6 +26,6 @@ export class Docente {
     @Column()
     numero_dni: number;
 
-    @ManyToOne( () => Dni, { eager:true })
+    @ManyToOne( () => Dni)
     dni: Dni;
 }
