@@ -6,7 +6,10 @@ import { Column, DeleteDateColumn, Entity, JoinColumn, ManyToMany, ManyToOne, On
 export class Aula {
     @Column({ primary: true, generated: true })
     aulas_id: number;
-    
+
+    @Column({ length: 500 })
+    numero_aula: string;
+
     @Column()
     capacidad: number;
 
@@ -20,3 +23,4 @@ export class Aula {
     @OneToMany(() => Alumno, alumno => alumno.aula, { eager: true})
     alumno: Alumno[]
 }
+

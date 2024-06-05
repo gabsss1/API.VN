@@ -28,6 +28,7 @@ export class AulasService {
     }
     
     const aula = this.aulaRepository.create({
+      numero_aula: createAulaDto.numero_aula,
       capacidad: createAulaDto.capacidad,
       piso: createAulaDto.piso,
       seccion,
