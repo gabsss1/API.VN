@@ -16,7 +16,7 @@ export class Aula {
     @Column({ length: 500 })
     piso: string;
 
-    @OneToOne(() => Seccion, { eager: true })
+    @ManyToOne(() => Seccion, { eager: true })
     @JoinColumn()
     seccion: Seccion;
 
