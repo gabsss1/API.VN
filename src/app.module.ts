@@ -13,6 +13,7 @@ import { SeccionModule } from './seccion/seccion.module';
 import { AulasModule } from './aulas/aulas.module';
 import { CursosModule } from './cursos/cursos.module';
 import { HorariosModule } from './horarios/horarios.module';
+import { MatriculaModule } from './matricula/matricula.module';
 
 @Module({
   imports: [
@@ -40,7 +41,8 @@ import { HorariosModule } from './horarios/horarios.module';
     SeccionModule,
     AulasModule,
     CursosModule,
-    HorariosModule
+    HorariosModule,
+    MatriculaModule
   ],
   controllers: [AppController],
   providers: [AppService],
