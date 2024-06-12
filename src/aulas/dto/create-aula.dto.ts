@@ -5,7 +5,7 @@ export class CreateAulaDto {
 
     @ApiProperty()
     @IsString()
-    numero_aula: string;
+    grado: string;
 
     @ApiProperty()
     @IsNumber()

@@ -8,7 +8,7 @@ export class Aula {
     aulas_id: number;
 
     @Column({ length: 500 })
-    numero_aula: string;
+    grado: string;
 
     @Column()
     capacidad: number;
