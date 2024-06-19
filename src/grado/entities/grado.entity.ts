@@ -9,7 +9,4 @@ export class Grado {
 
     @Column({ length: 500})
     nombre_grado: string;
-
-    @ManyToOne( () => Seccion, { eager:true })
-    docente: Seccion;
 }
