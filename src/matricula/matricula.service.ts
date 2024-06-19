@@ -7,10 +7,10 @@ import { Repository } from 'typeorm';
 import { Alumno } from 'src/alumnos/entities/alumno.entity';
 import { Apoderado } from 'src/apoderado/entities/apoderado.entity';
 import { Seccion } from 'src/seccion/entities/seccion.entity';
+import { Grado } from 'src/grado/entities/grado.entity';
 
 @Injectable()
 export class MatriculaService {
-
 
   constructor(
 
@@ -24,7 +24,10 @@ export class MatriculaService {
     private readonly apoderadoRepository: Repository<Apoderado>,
 
     @InjectRepository(Seccion)
-    private readonly seccionRepository: Repository<Seccion>
+    private readonly seccionRepository: Repository<Seccion>,
+
+    @InjectRepository(Grado)
+    private readonly gradoRepository: Repository<Grado>
   ) {}
 
   async create(createMatriculaDto: CreateMatriculaDto) {
@@ -52,13 +55,21 @@ export class MatriculaService {
       throw new BadRequestException('seccion not found')
     }
 
+    const grado = await this.gradoRepository.findOneBy({
+      grados_id: createMatriculaDto.grados_id
+    })
+    if(!grado){
+      throw new BadRequestException('grado not found')
+    }
+
     const matricula = this.matriculaRepository.create({
       periodo_academico: createMatriculaDto.periodo_academico,
       numero_matricula: createMatriculaDto.numero_matricula,
       observaciones: createMatriculaDto.observaciones,
       alumno,
       apoderado,
-      seccion
+      seccion,
+      grado
     });
     return await this.matriculaRepository.save(matricula);
   }
@@ -111,12 +122,23 @@ export class MatriculaService {
       throw new BadRequestException('seccion not found');
     }
 
+    let grado;
+    if(updateMatriculaDto.grados_id){
+      grado = await this.gradoRepository.findOneBy({
+        grados_id: updateMatriculaDto.grados_id
+      })
+    }
+    if(!grado){
+      throw new BadRequestException('grado not found');
+    }
+
     return await this.matriculaRepository.save({
       ...matricula,
       ...updateMatriculaDto,
       alumno,
       apoderado,
-      seccion
+      seccion,
+      grado
     })
   }
 

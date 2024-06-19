@@ -29,4 +29,9 @@ export class CreateMatriculaDto {
     @IsNumber()
     @IsNotEmpty()
     seccion_id: number;
+
+    @ApiProperty()
+    @IsNumber()
+    @IsNotEmpty()
+    grados_id: number;
 }

@@ -6,9 +6,10 @@ import { Matricula } from './entities/matricula.entity';
 import { Alumno } from 'src/alumnos/entities/alumno.entity';
 import { Apoderado } from 'src/apoderado/entities/apoderado.entity';
 import { Seccion } from 'src/seccion/entities/seccion.entity';
+import { Grado } from 'src/grado/entities/grado.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Matricula, Alumno, Apoderado, Seccion])],
+  imports: [TypeOrmModule.forFeature([Matricula, Alumno, Apoderado, Seccion, Grado])],
   controllers: [MatriculaController],
   providers: [MatriculaService],
   exports: [TypeOrmModule]

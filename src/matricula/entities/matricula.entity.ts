@@ -2,6 +2,7 @@
 
 import { Alumno } from "src/alumnos/entities/alumno.entity";
 import { Apoderado } from "src/apoderado/entities/apoderado.entity";
+import { Grado } from "src/grado/entities/grado.entity";
 import { Seccion } from "src/seccion/entities/seccion.entity";
 import { Column, DeleteDateColumn, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, OneToOne } from "typeorm";
 
@@ -27,4 +28,7 @@ export class Matricula {
 
     @ManyToOne(() => Seccion, { eager: true })
     seccion: Seccion;
+
+    @ManyToOne(() => Grado, { eager: true })
+    grado: Grado;
 }

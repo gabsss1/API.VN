@@ -16,7 +16,6 @@ import { MatriculaModule } from './matricula/matricula.module';
 import { GradoModule } from './grado/grado.module';
 import { SalonModule } from './salon/salon.module';
 import { PeriodoAcademicoModule } from './periodo-academico/periodo-academico.module';
-import { PeriodoAcademicoModule } from './periodo-academico/periodo-academico.module';
 
 @Module({
   imports: [
