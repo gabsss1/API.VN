@@ -6,7 +6,7 @@ import { Alumno } from './entities/alumno.entity';
 import { Repository } from 'typeorm';
 import { Dni } from 'src/dni/entities/dni.entity';
 import { Apoderado } from 'src/apoderado/entities/apoderado.entity';
-import { Aula } from 'src/aulas/entities/aula.entity';
+import { Seccion } from 'src/seccion/entities/seccion.entity';
 
 @Injectable()
 export class AlumnosService {
@@ -22,8 +22,8 @@ export class AlumnosService {
     @InjectRepository(Apoderado)
     private readonly apoderadoRepository: Repository<Apoderado>,
 
-    @InjectRepository(Aula)
-    private readonly aulaRepository: Repository<Aula>,
+    @InjectRepository(Seccion)
+    private readonly seccionRepository: Repository<Seccion>,
 
   ) {}
 
@@ -44,16 +44,16 @@ export class AlumnosService {
       throw new BadRequestException('apoderado no encontrado');
     }
 
-    const aula = await this.aulaRepository.findOneBy({
-      aulas_id: createAlumnoDto.aulas_id
+    const seccion = await this.seccionRepository.findOneBy({
+      seccion_id: createAlumnoDto.seccion_id
     })
 
-    if(!aula){
-      throw new BadRequestException('aula no encontrada');
+    if(!seccion){
+      throw new BadRequestException('seccion no encontrada');
     }
 
-    if(aula.alumno.length >= aula.capacidad){
-      throw new BadRequestException('Capacidad del aula llena.');
+    if(seccion.alumno.length >= seccion.capacidad){
+      throw new BadRequestException('Capacidad de la seccion llena.');
     }
 
     const alumno = this.alumnoRepository.create({
@@ -64,19 +64,19 @@ export class AlumnosService {
       numero_dni: createAlumnoDto.numero_dni,
       dni,
       apoderado,
-      aula
+      seccion
     });
     return await this.alumnoRepository.save(alumno);
   }
 
   async findAll() {
-    return this.alumnoRepository.find({ relations: ['dni', 'apoderado', 'aula'] });
+    return this.alumnoRepository.find({ relations: ['dni', 'apoderado', 'seccion'] });
   }
 
   async findOne(alumno_id: number) {
     return await this.alumnoRepository.findOne({ 
       where: { alumno_id }, 
-      relations: ['dni', 'apoderado', 'aula'] 
+      relations: ['dni', 'apoderado', 'seccion'] 
     });
   }
 
@@ -109,23 +109,23 @@ export class AlumnosService {
       throw new BadRequestException('apoderado no encontrado');
     }
 
-    let aula;
-    if(updateAlumnoDto.aulas_id){
-      aula = await this.aulaRepository.findOneBy({
-        aulas_id: updateAlumnoDto.aulas_id
+    let seccion;
+    if(updateAlumnoDto.seccion_id){
+      seccion = await this.seccionRepository.findOneBy({
+        seccion_id: updateAlumnoDto.seccion_id
       })
     }
 
-    if(!aula){
-      throw new BadRequestException('aula no encontrada');
+    if(!seccion){
+      throw new BadRequestException('seccion no encontrada');
     }
 
-    const alumnoEnAula = aula.alumno.find(alumnoAula => alumnoAula.alumno_id === alumno.alumno_id);
+    const alumnoEnSeccion = seccion.alumno.find(alumnoSeccion => alumnoSeccion.alumno_id === alumno.alumno_id);
 
     // Si el alumno no está actualmente en el aula, verificar la capacidad del aula
-    if (!alumnoEnAula) {
-      if (aula.alumno.length >= aula.capacidad) {
-        throw new BadRequestException('Capacidad del aula llena.');
+    if (!alumnoEnSeccion) {
+      if (seccion.alumno.length >= seccion.capacidad) {
+        throw new BadRequestException('Capacidad de la seccion llena.');
       }
     }
 
@@ -134,7 +134,7 @@ export class AlumnosService {
       ...updateAlumnoDto,
       dni,
       apoderado,
-      aula
+      seccion
     })
   }
 

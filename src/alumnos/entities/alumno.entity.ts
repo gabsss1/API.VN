@@ -1,6 +1,6 @@
 import { Apoderado } from "src/apoderado/entities/apoderado.entity";
-import { Aula } from "src/aulas/entities/aula.entity";
 import { Dni } from "src/dni/entities/dni.entity";
+import { Seccion } from "src/seccion/entities/seccion.entity";
 import { Column, DeleteDateColumn, Entity, JoinColumn, ManyToMany, ManyToOne } from "typeorm";
 
 
@@ -31,6 +31,6 @@ export class Alumno {
     @ManyToOne( () => Apoderado, apoderado => apoderado.alumnos )
     apoderado: Apoderado;
 
-    @ManyToOne( () => Aula, aula => aula.alumno)
-    aula: Aula;
+    @ManyToOne( () => Seccion, seccion => seccion.alumno)
+    seccion: Seccion;
 }

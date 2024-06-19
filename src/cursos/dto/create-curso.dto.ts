@@ -15,5 +15,5 @@ export class CreateCursoDto {
     @ApiProperty()
     @IsNumber()
     @IsNotEmpty()
-    aulas_id: number
+    grados_id: number
 }

@@ -1,5 +1,5 @@
-import { Aula } from "src/aulas/entities/aula.entity";
 import { Docente } from "src/docentes/entities/docente.entity";
+import { Grado } from "src/grado/entities/grado.entity";
 import { Column, DeleteDateColumn, Entity, JoinColumn, ManyToMany, ManyToOne } from "typeorm";
 
 @Entity()
@@ -14,6 +14,6 @@ export class Curso {
      @ManyToOne( () => Docente, { eager:true })
      docente: Docente;
 
-     @ManyToOne( () => Aula, { eager:true })
-     aula: Aula;
+     @ManyToOne( () => Grado, { eager:true })
+     grado: Grado;
 }

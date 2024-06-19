@@ -5,7 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Curso } from './entities/curso.entity';
 import { Repository } from 'typeorm';
 import { Docente } from 'src/docentes/entities/docente.entity';
-import { Aula } from 'src/aulas/entities/aula.entity';
+import { Grado } from 'src/grado/entities/grado.entity';
 
 @Injectable()
 export class CursosService {
@@ -18,8 +18,8 @@ export class CursosService {
     @InjectRepository(Docente)
     private readonly docenteRepository: Repository<Docente>,
 
-    @InjectRepository(Aula)
-    private readonly aulaRepository: Repository<Aula>
+    @InjectRepository(Grado)
+    private readonly gradoRepository: Repository<Grado>
   ) {}
 
   async create(createCursoDto: CreateCursoDto) {
@@ -31,18 +31,18 @@ export class CursosService {
       throw new BadRequestException('docente not found')
     }
 
-    const aula = await this.aulaRepository.findOneBy({
-      aulas_id: createCursoDto.aulas_id
+    const grado = await this.gradoRepository.findOneBy({
+      grados_id: createCursoDto.grados_id
     })
 
-    if(!aula){
+    if(!grado){
       throw new BadRequestException('aula not found')
     }
 
     const cursos = this.cursoRepository.create({
       nombre_cursos: createCursoDto.nombre_cursos,
       docente,
-      aula
+      grado
     });
     return await this.cursoRepository.save(cursos);
   }
@@ -73,10 +73,10 @@ export class CursosService {
       throw new BadRequestException('docente not found');
     }
 
-    let aula;
-    if(updateCursoDto.aulas_id){
-      aula = await this.aulaRepository.findOneBy({
-        aulas_id: updateCursoDto.aulas_id
+    let grado;
+    if(updateCursoDto.grados_id){
+      grado = await this.gradoRepository.findOneBy({
+        grados_id: updateCursoDto.grados_id
       })
     }
 
@@ -84,7 +84,7 @@ export class CursosService {
       ...curso,
       ...updateCursoDto,
       docente,
-      aula
+      grado
     })
   }
 

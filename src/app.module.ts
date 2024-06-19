@@ -10,10 +10,11 @@ import { DniModule } from './dni/dni.module';
 import { AlumnosModule } from './alumnos/alumnos.module';
 import { DocentesModule } from './docentes/docentes.module';
 import { SeccionModule } from './seccion/seccion.module';
-import { AulasModule } from './aulas/aulas.module';
 import { CursosModule } from './cursos/cursos.module';
 import { HorariosModule } from './horarios/horarios.module';
 import { MatriculaModule } from './matricula/matricula.module';
+import { GradoModule } from './grado/grado.module';
+import { SalonModule } from './salon/salon.module';
 
 @Module({
   imports: [
@@ -39,10 +40,11 @@ import { MatriculaModule } from './matricula/matricula.module';
     AlumnosModule,
     DocentesModule,
     SeccionModule,
-    AulasModule,
     CursosModule,
     HorariosModule,
-    MatriculaModule
+    MatriculaModule,
+    GradoModule,
+    SalonModule
   ],
   controllers: [AppController],
   providers: [AppService],

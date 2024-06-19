@@ -36,5 +36,5 @@ export class CreateAlumnoDto {
     @ApiProperty()
     @IsNumber()
     @IsNotEmpty()
-    aulas_id: number;
+    seccion_id: number;
 }
